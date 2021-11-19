@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+
+<body>
+
+	<!-- Back to top button -->
+	<div class="back-to-top"></div>
+
+	<header th:replace="/layout :: header"> </header>
+	<div class="container">
+		<div class="page-banner"
+			style="background-image: url(/images/hinh6.jpg);">
+			<div class="row justify-content-center align-items-center h-100">
+				<div class="col-md-6">
+					<nav aria-label="Breadcrumb">
+						<ul class="breadcrumb justify-content-center py-0 bg-transparent">
+							<li class="breadcrumb-item"><a href="index.html">Trang
+									chủ</a></li>
+							<li class="breadcrumb-item active">Thông tin</li>
+						</ul>
+					</nav>
+					<h1 class="text-center">Bác sĩ</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="page-section">
+		<div class="container">
+			<form th:action="@{/bacsi/selectKhoa}" method="POST"
+				class="form-search-blog">
+				<div class="row">
+					<div class="col-sm-10">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<!-- <select  th:field="*{ma}"class="custom-select bg-light">
+									<option value="">Khoa</option>
+									<option  th:each="khoa: ${listKhoa}" th:value="${khoa.ma}"
+										th:utext="	${khoa.tenkhoa}"></option>
+								</select> -->
+								<div class="dropdown">
+									<p class=" dropdown-toggle " data-toggle="dropdown"
+										style="padding: 12px 50px; background-color: blue; color: white;">Khoa</p>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" th:href="@{/selectKhoa} + ${0}">Khoa</a>
+										<th:block th:each="khoa: ${listKhoa}">
+											<a class="dropdown-item" th:utext="	${khoa.tenkhoa}"
+												th:href="@{/selectKhoa} + ${khoa.ma}"></a>
+										</th:block>
+									</div>
+								</div>
+							</div>
+							<input type="text" name="tenBacSi" class="form-control"
+								placeholder="Enter keyword..">
+						</div>
+
+					</div>
+					<div class="col-sm-2 text-sm-right">
+						<button class="btn btn-secondary" type="text">
+							Tìm kiếm <span class="mai-filter"></span>
+						</button>
+					</div>
+
+				</div>
+			</form>
+			<div class="row my-5">
+				<th:block th:each="bacsi : ${listBacSi}">
+					<div class="col-lg-4 py-3">
+						<div class="card-blog">
+							<div class="header">
+								<div class="post-thumb">
+									<img th:src="@{${bacsi.get('img')}}" alt="">
+								</div>
+							</div>
+							<div class="body">
+								<h5 class="post-title">
+									<p th:text="${bacsi.get('fullName')}" style="color: black">Bác
+										sĩ A</p>
+								</h5>
+								<div class="post-date">
+									<div class="row">
+										<b style="margin-right: 10px">Email: </b><span
+											th:text="${bacsi.get('email')}"> </span>
+									</div>
+									<div class="row">
+										<b style="margin-right: 10px">SDT: </b><span
+											th:text="${bacsi.get('phone')}"> </span>
+									</div>
+									<div class="row">
+										<b style="margin-right: 10px">khoa: </b> <span
+											th:text="${bacsi.get('tenkhoa')}" style="color: blue"></span>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</th:block>
+
+			</div>
+
+			<nav aria-label="Page Navigation">
+				<ul class="pagination justify-content-center">
+					<li class="page-item disabled"><a class="page-link" href="#"
+						tabindex="-1" aria-disabled="true">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item active" aria-current="page"><a
+						class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</div>
+	<!-- .page-section -->
+	<footer class="page-footer bg-image"
+		style="background-image: url(../assets/img/world_pattern.svg);">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-lg-3 py-3">
+					<h3>SEOGram</h3>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Libero amet, repellendus eius blanditiis in iusto eligendi iure.</p>
+
+					<div class="social-media-button">
+						<a href="#"><span class="mai-logo-facebook-f"></span></a> <a
+							href="#"><span class="mai-logo-twitter"></span></a> <a href="#"><span
+							class="mai-logo-google-plus-g"></span></a> <a href="#"><span
+							class="mai-logo-instagram"></span></a> <a href="#"><span
+							class="mai-logo-youtube"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-3 py-3">
+					<h5>Company</h5>
+					<ul class="footer-menu">
+						<li><a href="#">About Us</a></li>
+						<li><a href="#">Career</a></li>
+						<li><a href="#">Advertise</a></li>
+						<li><a href="#">Terms of Service</a></li>
+						<li><a href="#">Help & Support</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-3 py-3">
+					<h5>Contact Us</h5>
+					<p>203 Fake St. Mountain View, San Francisco, California, USA</p>
+					<a href="#" class="footer-link">+00 1122 3344 5566</a> <a href="#"
+						class="footer-link">seogram@temporary.com</a>
+				</div>
+				<div class="col-lg-3 py-3">
+					<h5>Newsletter</h5>
+					<p>Get updates, news or events on your mail.</p>
+					<form action="#">
+						<input type="text" class="form-control"
+							placeholder="Enter your email..">
+						<button type="submit" class="btn btn-success btn-block mt-2">Subscribe</button>
+					</form>
+				</div>
+			</div>
+
+			<p class="text-center" id="copyright">
+				Copyright &copy; 2020. This template design and develop by <a
+					href="https://macodeid.com/" target="_blank">MACode ID</a>
+			</p>
+		</div>
+	</footer>
+	<div th:replace="/layout :: linkJS">
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap}" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{fonts/icomoon/style.css}">
+
+    <link rel="stylesheet" th:href="@{css/owl.carousel.min.css}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" th:href="@{css/style.css}">
+
+    <title> Web Y Tế</title>
+  </head>
+  <body>
+  
+
+  
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <h3>Đăng Nhập</h3>
+              <p class="mb-4">Chào mừng bạn đến với Trang Web Hỗ Trợ Y Tế</p>
+            </div>
+            <form th:action="@{/j_spring_security_check}" method="post">
+              <div class="form-group first">
+                <label for="username">Tên Đăng Nhập</label>
+                <input type="text" name="username" class="form-control" id="username">
+
+              </div>
+              <div class="form-group last mb-4">
+                <label for="password">Mật Khẩu</label>
+                <input type="password" name="password" class="form-control" id="password">
+                
+              </div>
+              
+              <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                  <input type="checkbox" checked="checked"/>
+                  <div class="control__indicator"></div>
+                </label>
+                <span class="ml-auto"><a href="#" class="forgot-pass">Quyên mật khẩu</a></span> 
+              </div>
+
+              <div class="col text-center">
+                <input  type="submit" value="Đăng Nhập" style="margin: 10px;"  class="col-5 btn btn-primary">
+                <a th:href="@{/register}" ><input value="Đăng Ký" style="margin: 10px;"  class="col-5 btn btn-primary" readonly="readonly"></a>
+              </div>
+             
+
+             
+            </form>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+    <script th:src="@{js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{js/popper.min.js}"></script>
+    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script th:src="@{js/main.js}"></script>
+  </body>
+</html>

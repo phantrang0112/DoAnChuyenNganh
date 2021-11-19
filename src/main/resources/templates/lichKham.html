@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+
+<body>
+
+	<!-- Back to top button -->
+	<div class="back-to-top"></div>
+
+	<header th:replace="/layout :: header"> </header>
+	<div class="container">
+		<div class="page-banner"
+			style="background-image: url(../assets/img/hinhbgr.jpg); background-repeat: no-repeat; background-size: contain;">
+			<div class="row justify-content-center align-items-center h-100">
+				<div class="col-md-6">
+					<nav aria-label="Breadcrumb">
+						<ul class="breadcrumb justify-content-center py-0 bg-transparent">
+							<li class="breadcrumb-item"><a href="index.html">Trang
+									chủ</a></li>
+							<li class="breadcrumb-item active">Lịch khám</li>
+						</ul>
+					</nav>
+					<h1 style="margin-left: 160px;" class="text-center">Danh sách
+						lịch khám</h1>
+					<button class="btn btn-primary text-center"
+						style="position: absolute; left: 38%; top: 99%"
+						data-toggle="modal" data-target="#myModal">đăng kí lịch
+						khám</button>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" style="margin-top: 10%;" id="myModal"
+			role="dialog">
+			<div class="modal-dialog">
+
+
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Đăng kí lịch khám</h4>
+					</div>
+					<div class="modal-body">
+						<form action="/action_page.php" class="row">
+							<label class="col-3 text-left" for="ngaykham">Ngày khám:</label> <input
+								type="date" class="col-5" id="ngaykham" name="ngaykham">
+							<input type="submit" class="btn btn-primary col-2" value="Loc">
+						</form>
+						<br>
+						<div class="row">
+							<label class="col-3 text-left" for="sel1">Chọn Khoa:</label> <select
+								class="col-7 form-control" id="sel1" name="sellist1">
+								<option>Khoa 1</option>
+								<option>khoa 2</option>
+								<option>khoa 3</option>
+								<option>khoa 4</option>
+							</select>
+						</div>
+						<br>
+						<div class="row">
+							<label class="col-3 text-left" for="sel1">Chon bac si:</label> <select
+								class="col-7 form-control" id="sel1" name="sellist1">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+							</select>
+						</div>
+						<br>
+						<button type="submit" class="btn btn-primary">Dang ki</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="page-section">
+		<div class="container">
+			<div class="row">
+			<th:block>
+				<div class="col-lg-4">
+					<div class="card-service">
+						<div class="header">
+							<img src="../assets/img/services/service-3.svg" alt="">
+						</div>
+						<div class="body">
+							<h5 class="text-secondary">Bác sĩ A</h5>
+							<p>Ngày 09/12/2020</p>
+							<p>sdt bs:029302984</p>
+							<a href="service.html" class="btn btn-primary">Hủy lịch</a>
+						</div>
+					</div>
+				</div>
+				</th:block>
+				<div class="col-lg-4">
+					<div class="card-service">
+						<div class="header">
+							<img src="../assets/img/services/service-3.svg" alt="">
+						</div>
+						<div class="body">
+							<h5 class="text-secondary">Bác sĩ A</h5>
+							<p>Ngày 09/12/2020</p>
+							<p>sdt bs:029302984</p>
+							<a href="service.html" class="btn btn-primary">Hủy lịch</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="card-service">
+						<div class="header">
+							<img src="../assets/img/services/service-3.svg" alt="">
+						</div>
+						<div class="body">
+							<h5 class="text-secondary">Bác sĩ A</h5>
+							<p>Ngày 09/12/2020</p>
+							<p>sdt bs:029302984</p>
+							<a href="service.html" class="btn btn-primary">Hủy lịch</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<nav aria-label="Page Navigation">
+				<ul class="pagination justify-content-center">
+					<li class="page-item disabled"><a class="page-link" href="#"
+						tabindex="-1" aria-disabled="true">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item active" aria-current="page"><a
+						class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
+			</nav>
+		</div>
+		<!-- .container -->
+	</div>
+	<!-- .page-section -->
+
+	<footer class="page-footer bg-image"
+		style="background-image: url(../assets/img/world_pattern.svg);">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-lg-3 py-3">
+					<h3>SEOGram</h3>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Libero amet, repellendus eius blanditiis in iusto eligendi iure.</p>
+
+					<div class="social-media-button">
+						<a href="#"><span class="mai-logo-facebook-f"></span></a> <a
+							href="#"><span class="mai-logo-twitter"></span></a> <a href="#"><span
+							class="mai-logo-google-plus-g"></span></a> <a href="#"><span
+							class="mai-logo-instagram"></span></a> <a href="#"><span
+							class="mai-logo-youtube"></span></a>
+					</div>
+				</div>
+				<div class="col-lg-3 py-3">
+					<h5>Company</h5>
+					<ul class="footer-menu">
+						<li><a href="#">About Us</a></li>
+						<li><a href="#">Career</a></li>
+						<li><a href="#">Advertise</a></li>
+						<li><a href="#">Terms of Service</a></li>
+						<li><a href="#">Help & Support</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-3 py-3">
+					<h5>Contact Us</h5>
+					<p>203 Fake St. Mountain View, San Francisco, California, USA</p>
+					<a href="#" class="footer-link">+00 1122 3344 5566</a> <a href="#"
+						class="footer-link">seogram@temporary.com</a>
+				</div>
+				<div class="col-lg-3 py-3">
+					<h5>Newsletter</h5>
+					<p>Get updates, news or events on your mail.</p>
+					<form action="#">
+						<input type="text" class="form-control"
+							placeholder="Enter your email..">
+						<button type="submit" class="btn btn-success btn-block mt-2">Subscribe</button>
+					</form>
+				</div>
+			</div>
+
+			<p class="text-center" id="copyright">
+				Copyright &copy; 2020. This template design and develop by <a
+					href="https://macodeid.com/" target="_blank">MACode ID</a>
+			</p>
+		</div>
+	</footer>
+	<div th:replace="/layout :: linkJS"></div>
+
+</body>
+</html>

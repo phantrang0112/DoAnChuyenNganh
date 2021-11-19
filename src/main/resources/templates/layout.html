@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="copyright" content="MACode ID, https://macodeid.com/">
+
+<title>Web Y Tế</title>
+
+<!-- Style -->
+<link rel="stylesheet" th:href="@{../css/maicons.css}">
+<link rel="stylesheet" th:href="@{../css/bootstrap/bootstrap.css}">
+<link rel="stylesheet" th:href="@{../css/style.css}">
+<link rel="stylesheet" th:href="@{../css/animate.css}">
+<link rel="stylesheet" th:href="@{../css/theme.css}">
+
+
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white sticky"
+			data-offset="300">
+			<div class="container">
+				<a href="#" class="navbar-brand">Seo<span class="text-primary">Gram.</span></a>
+
+				<button class="navbar-toggler" data-toggle="collapse"
+					data-target="#navbarContent" aria-controls="navbarContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="navbar-collapse collapsed" id="navbarContent">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active "><a class="nav-link"
+							th:href="@{/home}">Trang chủ</a></li>
+						<li class="nav-item "><a class="nav-link" th:href="@{/bacsi}">Thông
+								tin</a></li>
+						<li class="nav-item "><a class="nav-link" href="service.html">Lịch
+								khám</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">vaccine</a>
+						</li>
+						<li class="nav-item "><a class="nav-link"
+							href="ToaThuoc.html">Toa thuốc</a></li>
+						<li class="nav-item "><a class="nav-link" href="account.html">Chi
+								Tiet Tai Khoan</a></li>
+						<li class="nav-item"><a class="btn btn-primary ml-lg-2"
+							th:href="@{/login}">Đăng nhập</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</nav>
+	</header>
+	<div th:fragment="linkJS">
+		<script th:src="@{js/jquery-3.5.1.min.js}"></script>
+		<script th:src="@{js/bootstrap.bundle.min.js}"></script>
+
+		<script th:src="@{js/google-maps.js}"></script>
+		<script th:src="@{js/wow.min.js}"></script>
+		<script th:src="@{js/theme.js}"></script>
+	</div>
+</body>
+</html>
