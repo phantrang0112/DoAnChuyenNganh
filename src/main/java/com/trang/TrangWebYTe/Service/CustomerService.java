@@ -11,31 +11,34 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.trang.TrangWebYTe.mapper.RoleMapper;
+import com.trang.TrangWebYTe.mapper.TaiKhoanMapper;
 import com.trang.TrangWebYTe.mapper.UserMapper;
-import com.trang.TrangWebYTe.model.User;
-import com.trang.TrangWebYTe.model.UserExample;
-
-
+import com.trang.TrangWebYTe.model.Role;
+import com.trang.TrangWebYTe.model.RoleExample;
+import com.trang.TrangWebYTe.model.TaiKhoan;
+import com.trang.TrangWebYTe.model.TaiKhoanExample;
 
 @Service
 public class CustomerService implements UserDetailsService {
 	@Autowired
-	UserMapper userMapper;
+	TaiKhoanMapper taikhoanMapper;
+	@Autowired
+	RoleMapper roleMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {// username nhập liệu từ front
-		UserExample userExample = new  UserExample();
-		userExample.createCriteria().andUsernameEqualTo(username);
-		List<User> listUser= userMapper.selectByExample(userExample);
+		TaiKhoanExample taikhoanExample = new  TaiKhoanExample();
+		taikhoanExample.createCriteria().andUsernameEqualTo(username);
+		List<TaiKhoan> listUser= taikhoanMapper.selectByExample(taikhoanExample);
+		List<GrantedAuthority> grantedAuthorities= new ArrayList<GrantedAuthority>();
 		if(listUser.size()>0) {
-			User user = listUser.get(0);
-			List<GrantedAuthority> grantedAuthorities= new ArrayList<GrantedAuthority>();
-			GrantedAuthority authority= new SimpleGrantedAuthority("ADMIN");//muốn có nhiều quyền thì add thêm nhiều authority
-			grantedAuthorities.add(authority);
+			TaiKhoan user = listUser.get(0);
+			Role role= roleMapper.selectByPrimaryKey(listUser.get(0).getIdrole());
 			
+			GrantedAuthority authority= new SimpleGrantedAuthority("ROLE_"+role.getTenquyen());//muốn có nhiều quyền thì add thêm nhiều authority
+			grantedAuthorities.add(authority);
 			UserDetails userDetails= new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),grantedAuthorities);
-			System.out.println(user.getUsername()+ user.getPassword()+"hạkajshkds");
-			System.out.println("huhu"+username);
 			return userDetails;
 		}
 		else {
@@ -43,4 +46,5 @@ public class CustomerService implements UserDetailsService {
 		}
 		return null;
 	}
+	
 }

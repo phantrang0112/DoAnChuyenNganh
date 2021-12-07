@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/bacsi/bacsilayout :: head">
+</head>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<body>
+	<header
+		th:replace="~{/bacsi/bacsilayout  :: header(tenbacsi=${bacsi})}">
+	</header>
+	<div class="container-fluid">
+		<main class="tm-main">
+			<th:block th:each="item: SKB">
+				<h1 class="mb-5 row  text-center" style="text-align: center;">
+					Đơn thuốc số &nbsp;
+					<lable th:text="${SKB.get('MaSKB')}"></lable>
+				</h1>
+				<hr class="tm-hr-primary tm-mb-55">
+				<div class=" justify-content-center">
+
+					<div class="row">
+						<div class="col-8 text-center">
+							<form>
+
+								<div class="row">
+									<label class="col-4 text-left" for="birthday">Ngày
+										khám:</label> <input type="date" class="col-7 "
+										th:value="${SKB.get('ngaykham')}" id="birthday"
+										name="birthday" readonly="readonly">
+
+								</div>
+								<br>
+								<div class="row">
+									<label class=" col-4 text-left ">Tên Bệnh Nhân:</label> <input
+										class="col-7" th:value="${SKB.get('fullName')}"
+										readonly="readonly" />
+								</div>
+
+							</form>
+							<br>
+
+
+						</div>
+					</div>
+
+					<div class="row ">
+				
+						<div class="col-8 ">
+							<form th:object="${Benhs}" th:action="@{/save}+${SKB.get('MaSKB')}" method="POST"  >
+							<div class="row">
+
+								<label class=" col-4 text-left "> Bệnh:</label>
+								<!-- th:style="${display} ? 'display: none' : 'display: inline' " -->
+								<th:block th:if="${display}">
+									<!-- <p th:text="${#strings.listJoin(listBenhs, ',')}"></p> -->
+									<input class="col-7" th:value="${#strings.listJoin(listBenhs, ',')}" readonly="readonly" />
+								</th:block>
+								<th:block th:if="!${display}">
+									<select th:field="*{benhs}" class="js-select2 col-7" style="color: black;"
+										multiple="multiple"   onchange="validateSelectBox(this)">
+										
+										<th:block th:each="item : ${listBenh}">
+										<option th:value="${item.ma}" th:text="${item.tenbenh}"></option>
+										</th:block>
+									</select>
+								
+									<button type="submit" class="close" aria-label="Close">
+											<span style="color: rgb(15, 226, 163);"><i class="fa fa-check"></i></span>
+									</button>
+								</th:block>
+							</div>
+							
+							</form>
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-12">
+					<h4 th:text="${message}" style="color:red"></h4>
+
+					<div class="table-wrap">
+						<table class="table" id="myTable" style="text-align: center;">
+							<thead class="thead-primary">
+								<tr>
+									<th>STT</th>
+									<th>Thuốc</th>
+									<th>SL</th>
+									<th>Cách dùng</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody class="mytbody" id="tbody">
+							<th:block th:if="${display}">
+								<th:block th:each="item,tam: ${ listCTTTTam}">
+								
+								<tr class="alert" id="insertRow" role="alert"
+									>
+									<td class="col-1" th:text="${tam.count}">1</td>
+
+									<td class="col-3">
+										<div class="input-group">
+											<input type="text " class="quantity form-control input-number"
+												th:value="${item.tenthuoc}" readonly="readonly">
+										</div>
+									</td>
+
+									<td class="quantity col-2">
+										<div class="input-group">
+											<input type="number"
+											min="1" max="100" th:value="${item.soluongdung}" 	class="quantity form-control input-number" readonly="readonly" >
+										</div>
+									</td>
+									<td class="col-4">
+										<div class="input-group">
+											<input type="text" class="quantity form-control input-number"
+												 th:value="${item.cachdung}" readonly="readonly">
+										</div>
+									</td>
+									<th:block th:if="!${displays}">
+									<td class="col-1">
+										
+										<a th:href="@{/deleteItem}+${tam.count}+'/'+${SKB.get('MaSKB')}"  class="close" style="margin-right: 10px;">
+											<span aria-hidden="true"><i class="fa fa-times"
+												style="color: rgb(226, 15, 15);"></i></span>
+										</a>
+									</td>
+									</th:block>
+								</tr>
+								</th:block>
+								</th:block>
+								<th:block th:if="!${displays}">
+								<form th:action="@{/saveToaThuoc}+${SKB.get('MaSKB')}" method="POST"  th:object="${CTSKBT}">
+								<tr class="alert" id="insertRow" role="alert">
+									<td class="col-1">1</td>
+
+									<td class="col-3"><select name="thuoc"
+										class=" js-select2 form-control"
+										style="background: transparent; border: none;" th:field="*{tenthuoc}">
+											<option th:each="item : ${listThuoc}"
+												th:value="${item.tenthuoc}" th:text="${item.tenthuoc}" ></option>
+
+
+
+									</select ></td>
+
+									<td class="quantity col-2">
+										<div class="input-group">
+											<input type="number" name="quantity"  th:field="*{soluongdung}"
+												class="quantity form-control input-number" value="1">
+										</div>
+									</td>
+									<td class="col-4">
+										<div class="input-group">
+											<input type="text" name="quantity" th:field="*{cachdung}"
+												class="quantity form-control input-number" value="1" min="1"
+												max="100">
+										</div>
+									</td>
+									
+									<td class="col-1">
+										<button type="submit" class="close" aria-label="Close">
+											<span style="color: rgb(15, 226, 163);"><i
+												class="fa fa-check"></i></span>
+										</button>
+										
+									</td>
+									
+								</tr>
+								</form>
+								</th:block>
+							</tbody>
+						</table>
+						<th:block th:if="!${displays}">
+						<div class="row">
+						<a class="col-2 btn btn-danger"  type="button" style="border: none;" th:href="@{/SaverToaThuoc}+${SKB.get('MaSKB')}">
+								Lưu
+							
+						</a>
+					</div>
+					</th:block>
+					</div>
+				</div>
+			</th:block>
+		</main>
+	</div>
+	  <script language="javascript">
+            function validateSelectBox(obj)
+            {
+            	
+            	
+                // Lấy danh sách các options
+                var a=[];
+                var options = obj.children;
+ 
+                // Biến lưu trữ các chuyên mục đa chọn
+                var html = '';
+ 
+                // lặp qua từng option và kiểm tra thuộc tính selected
+                for (var i = 0; i < options.length; i++){
+                    if (options[i].selected){
+                        html += options[i].value;
+                        a.push(options[i].value);
+                    }
+                }
+ 
+                // Gán kết quả vào div#result
+                document.getElementById('result').value = html;
+                console.log(a);
+                return a;
+            }
+        </script>
+	<script>
+	
+		// Material Select Initialization
+		$(".js-select2").select2({
+			closeOnSelect : false,
+			placeholder : "Placeholder",
+			allowHtml : true,
+			allowClear : true,
+			tags : true
+		});
+		function testFumction() {
+
+			var el = document.getElementById('tbody');
+
+			el
+					.insertAdjacentHTML(
+							'beforeend',
+							'<tr class="alert" id="insertRow" role="alert"><td class="col-3"><select class="js-select2 form-control select2-hidden-accessible" style="background: transparent; border: none;" tabindex="-1" aria-hidden="true"><option> chon benh</option><option>Joefrey</option><option>Robert</option><option>Jorge</option><option>Mark</option></select><span class="select2 select2-container select2-container--default select2-container--below select2-container--focus" dir="ltr" style="width: 226.641px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jcnt-container"><span class="select2-selection__rendered" id="select2-jcnt-container" title=" chon benh"><span class="select2-selection__clear">×</span> chon benh</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></td></tr> ')
+
+		}
+		function myFunction() {
+			var row = document.getElementById("insertRow").innerHTML;
+			console.log(row);
+			$("#myTable > tbody").after(
+					'<tr class="alert"  role="alert">' + row + '</tr>');
+		}
+	</script>
+	<div th:replace="/bacsi/bacsilayout :: linkJS"></div>
+	<script>
+		document.getElementById("lich_da_kham").classList.add('active');
+	</script>
+
+</body>
+</html>

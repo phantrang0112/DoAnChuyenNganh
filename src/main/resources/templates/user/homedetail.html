@@ -16,14 +16,12 @@
 				<li class="breadcrumb-item active">Chi tiết tin</li>
 			</ul>
 		</nav>
-		<div class="page-banner"
-			th:style="'background-image: url('+@{${News.img}}+'); background-repeat: no-repeat;background-size: cover;height: 450px;'"></div>
+		<div class="page-banner"th:style="'background-image: url('+@{${News.img}}+'); background-repeat: no-repeat;background-size: cover;height: 450px;'"></div>
 		<div class="page-section">
 			<div class="row align-items-center">
 				<div class="col-lg-12 py-3">
 					<h5 th:text="${News.ngaytao}"></h5>
-					<h2 class="title-section" th:text="${News.tieude}">The number
-						#1 SEO Service Company</h2>
+					<h2 class="title-section" th:text="${News.tieude}"></h2>
 					<div class="divider"></div>
 					<p th:text="${News.noidungthugon}"></p>
 					<p th:text="${News.noidung}"></p>

@@ -5,17 +5,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	th:href="@{//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css}"
 	rel="stylesheet" id="bootstrap-css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
 <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	th:src="@{//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
 
 <!-- Style -->
-<link rel="stylesheet" th:href="@{css/style.css}">
+<link rel="stylesheet" th:href="@{../css/style.css}">
 </head>
 <body>
 	<div class="container register">
@@ -23,7 +23,7 @@
 			<div class="col-md-3 register-left">
 				<img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
 				<h3>Welcome</h3>
-				<a th:href="@{/login}"><input type="submit" name="" value="Login" /><br /></a>
+				<a th:href="@{/login}"><input type="submit" name="" value="Đăng Nhập" /><br /></a>
 				
 			</div>
 			<div class="col-md-9 register-right">
@@ -33,21 +33,25 @@
 					<div class="tab-pane fade show active" id="home" role="tabpanel"
 						aria-labelledby="home-tab">
 						<h3 class="register-heading">Đăng ký tài khoản</h3>
-						<form th:action="@{register/saveUser}" method="POST"
-							th:object="${newUser}" onsubmit="return validateform()">
-							<div class="row register-form">
+						
+						<form th:action="@{saveUser}" method="POST"
+							 onsubmit="return validateform()">
+							
+							<div class=" register-form">
+							 <p  th:text="${message}" style="text-align: center;margin-left: 15%; margin-bottom: 5%; color:red;"></p>
+							 <div class="row">
 								<div class="col-md-6">
-									<div class="form-group">
+									 <div class="form-group">
 										<input type="text" class="form-control" id="fullname"
-											th:field="*{fullname}" placeholder="full Name *" value="" />
-									</div>
+											th:field="${User.fullname}" placeholder="full Name *" value="" />
+									</div> 
 									<div class="form-group">
 										<input type="text" class="form-control" id="username"
-											th:field="*{username}" placeholder="UserName *" value="" />
+											th:field="${newUser.username}" placeholder="UserName *" value="" />
 									</div>
 									<div class="form-group">
 										<input type="password" class="form-control" id="password"
-											th:field="*{password}" placeholder="Password *" value="" />
+											th:field="${newUser.password}" placeholder="Password *" value="" />
 									</div>
 									<div class="form-group">
 										<input type="password" class="form-control"
@@ -56,18 +60,19 @@
 									</div>
 								</div>
 								<div class="col-md-6">
-									<div class="form-group">
-										<input type="email" class="form-control" th:field="*{email}"
+									 <div class="form-group">
+										<input type="email" class="form-control" th:field="${User.email}"
 											placeholder="Your Email *" id="email" />
 									</div>
 									<div class="form-group">
 										<input type="text" minlength="10" maxlength="10"
-											name="txtEmpPhone" class="form-control" th:field="*{phone}"
+											name="txtEmpPhone" class="form-control" th:field="${User.phone}"
 											placeholder="Your Phone *" id="phone" />
-									</div>
+									</div> 
 
 
 									<input type="submit" class="btnRegister" value="Đăng ký" />
+								</div>
 								</div>
 							</div>
 						</form>

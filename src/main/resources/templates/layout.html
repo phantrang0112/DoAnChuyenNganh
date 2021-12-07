@@ -16,6 +16,7 @@
 <link rel="stylesheet" th:href="@{../css/style.css}">
 <link rel="stylesheet" th:href="@{../css/animate.css}">
 <link rel="stylesheet" th:href="@{../css/theme.css}">
+  <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
 
 
 </head>
@@ -34,17 +35,17 @@
 
 				<div class="navbar-collapse collapsed" id="navbarContent">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active "><a class="nav-link"
+						<li class="nav-item  " id="itemhome"><a class="nav-link"
 							th:href="@{/home}">Trang chủ</a></li>
-						<li class="nav-item "><a class="nav-link" th:href="@{/bacsi}">Thông
+						<li class="nav-item " id="itembacsi"><a class="nav-link" th:href="@{/bacsi}">Thông
 								tin</a></li>
-						<li class="nav-item "><a class="nav-link" href="service.html">Lịch
+						<li class="nav-item " id="itemlichkham"><a class="nav-link" th:href="@{/lichkham}">Lịch
 								khám</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">vaccine</a>
+						<li class="nav-item" id="itemvaccine"><a class="nav-link" th:href="@{/vaccine}">vaccine</a>
 						</li>
-						<li class="nav-item "><a class="nav-link"
-							href="ToaThuoc.html">Toa thuốc</a></li>
-						<li class="nav-item "><a class="nav-link" href="account.html">Chi
+						<li class="nav-item " id="itemtoathuoc"><a class="nav-link"
+							th:href="@{/toathuoc}">Toa thuốc</a></li>
+						<li class="nav-item " id="itemaccount"><a class="nav-link" th:href="@{/account}">Chi
 								Tiet Tai Khoan</a></li>
 						<li class="nav-item"><a class="btn btn-primary ml-lg-2"
 							th:href="@{/login}">Đăng nhập</a></li>

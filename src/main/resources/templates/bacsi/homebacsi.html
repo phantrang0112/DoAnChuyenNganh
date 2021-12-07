@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/bacsi/bacsilayout :: head">
+</head>
+<body>
+	<header
+		th:replace="~{/bacsi/bacsilayout  :: header(tenbacsi=${bacsi})}">
+	</header>
+	<div class="container-fluid">
+		<main class="tm-main">
+			<!-- Search form -->
+			<div class="row tm-row">
+				<div class="col-12">
+					<form th:action="@{/search}" method="POST"
+						class="form-inline tm-mb-80 tm-search-form">
+						<input class="form-control tm-search-input" name="ngayKham"
+							type="date" placeholder="Search..." aria-label="Search">
+						<button class="tm-search-button" type="submit">
+							<i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+						</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="row tm-row">
+				<div class="col-12">
+					<hr class="tm-hr-primary tm-mb-55">
+					<div class="row">
+						<th:block th:each="item:${listlichkham}">
+
+							<div class="col-lg-4">
+								<div class="card-service">
+
+									<div class="body">
+										<div class="justify-content-center text-center mt-3">
+											<img th:src="@{${item.get('img')}}"
+												style="position: relative;" class="rounded-circle"
+												alt="Cinque Terre" width="100" height="100" />
+										</div>
+										<h5 class="text-secondary">
+											Bệnh nhân: <span th:text="${item.get('username')}"></span>
+										</h5>
+										<br> <b>Ngày hẹn khám: </b>
+										<th:block th:with="date=${#dates.format(new java.util.Date(item.get('ngayhenkham')), 'dd-MM-yyyy')}">
+											<span th:utext="${date}">Ngày Khám 09/12/2020 </span>
+										</th:block>
+										<br> <br>
+										 <b>sdt bệnh nhân:</b>
+										 <span th:text="${item.get('phone')}">029302984</span> <br> <br>
+										<a href="#" class="btn btn-primary"
+											th:text="${item.get('trangthai')}">Đăng Kí</a>
+									</div>
+								</div>
+							</div>
+						</th:block>
+					</div>
+					<nav aria-label="Page Navigation">
+						<ul class="pagination justify-content-center">
+							<li class="page-item disabled"><a class="page-link" href="#"
+								tabindex="-1" aria-disabled="true">Previous</a></li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item active" aria-current="page"><a
+								class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">Next</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<!-- .page-section -->
+			</div>
+			<footer class="row tm-row">
+				<hr class="col-12">
+				<div class="col-md-6 col-12 tm-color-gray">
+					Design: <a rel="nofollow" target="_parent"
+						href="https://templatemo.com" class="tm-external-link">TemplateMo</a>
+				</div>
+				<div class="col-md-6 col-12 tm-color-gray tm-copyright">
+					Copyright 2020 Xtra Blog Company Co. Ltd.</div>
+			</footer>
+		</main>
+	</div>
+	<div th:replace="/bacsi/bacsilayout :: linkJS"></div>
+	<script>
+		document.getElementById("lich_kham").classList.add('active');
+	</script>
+</body>
+</html>

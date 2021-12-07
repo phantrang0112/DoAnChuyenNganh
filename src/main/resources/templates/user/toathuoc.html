@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+
+<body>
+
+	<!-- Back to top button -->
+	<div class="back-to-top"></div>
+
+	<header th:replace="/layout :: header"> </header>
+<section class="ftco-section" style="padding: 0px; padding-top: 2%;">
+		<div class="container">
+			<nav aria-label="Breadcrumb" style="margin:0,3%; ">
+				<ul class="breadcrumb justify-content-center py-0 bg-transparent">
+				  <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+				  <li class="breadcrumb-item active">Toa Thuốc</li>
+				</ul>
+			  </nav>
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Danh sách toa thuốc</h2>
+				</div>
+			</div>
+            <div id="myOverlay" class=" row overlay">
+                <div class="overlay-content">
+                  <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                  </form>
+                </div>
+              </div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table table-responsive-xl">
+						  <thead>
+						    <tr>
+						    	<th>Mã sổ</th>
+						    	<th>Bác sĩ</th>
+						      <th>Ngày khám</th>
+						      <th>Chi tiết</th>
+						      <th>&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  <th:block th:each="item,tam: ${listSoKhamBenh}">
+						    <tr class="alert" role="alert">
+						    	<td th:text="${tam.count}">
+						    		
+						    	</td>
+						      <td class="d-flex align-items-center">
+						      	<div class="img" th:style="'background-image: url('+@{${item.get('img')}}+')'"></div>
+						      	<div class="pl-3 email">
+						      		<span th:text="${item.get('fullName')}">Bác sĩ</span>
+						      		<span th:text="${item.get('phone')}">03487299</span>
+						      	</div>
+						      </td>
+						      <td><span th:text="${item.get('ngaykham')}">ngày khám 01-12-2020</span></td>
+						      <td class="status"><a th:href="@{/toathuoc/chitiet}+ ${item.get('masokhambenh')}"><span class="active">Chi tiết</span></a></td>
+						      <td>
+				        	</td>
+						    </tr>
+						    </th:block>
+						    
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div th:replace="/layout :: linkJS"></div>
+	<script>
+		document.getElementById("itemtoathuoc").classList.add('active');
+		
+	</script>
+</body>
+</html>

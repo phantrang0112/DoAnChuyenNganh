@@ -3,7 +3,7 @@ body {
   background-color: #f8fafb; }
 
 p {
-  color: #b3b3b3;
+  color:black;
   font-weight: 300; }
 
 h1, h2, h3, h4, h5, h6,
@@ -7700,7 +7700,7 @@ h2 {
 	  border-color: #dee2e6; } }
   
   .ftco-section {
-	padding: 7em 0; }
+	padding: 2em 0; }
   
   .ftco-no-pt {
 	padding-top: 0; }

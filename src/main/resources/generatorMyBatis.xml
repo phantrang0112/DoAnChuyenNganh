@@ -40,5 +40,27 @@
     </table>
     <table  tableName="lichkham" domainObjectName="LichKham">
     </table>
+    <table tableName="chitietsotiemchung" domainObjectName="ChiTietSoTiemChung">
+    </table>
+        <table tableName="vaccine" domainObjectName="Vaccine">
+    </table>
+   
+    <table tableName="sotiemchung" domainObjectName="SoTiemChung">
+    </table>
+     <table tableName="sokhambenh" domainObjectName="SoKhamBenh">
+     </table>
+     <table tableName="chitietsokhambenh" domainObjectName="chitietSoKhamBenh" >
+     </table>
+     <table tableName="toathuoc" domainObjectName="ToaThuoc" >
+     </table>
+     <table tableName="chitiettoathuoc" domainObjectName="ChiTietToaThuoc" >
+     </table>
+     <table tableName="thuoc" domainObjectName="Thuoc" >
+     </table>
+     <table tableName="taikhoan" domainObjectName="TaiKhoan">
+     </table>
+      <table tableName="benh" domainObjectName="Benh">
+     </table>
+     
   </context>
 </generatorConfiguration>

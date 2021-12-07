@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+
+<body>
+
+	<!-- Back to top button -->
+	<div class="back-to-top"></div>
+
+	<header th:replace="/layout :: header"> </header>
+<div class="container" style="color: black;">
+        <nav aria-label="Breadcrumb" style="margin-top: 5%;">
+            <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+              <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+              <li class="breadcrumb-item active"><a href="ToaThuoc.html">Toa Thuốc</a></li>
+              <li class="breadcrumb-item active">Chi tiết toa thuốc</li>
+            </ul>
+          </nav>
+        <h2 class="text-center" style="color: red;" >Chi tiết toa thuốc</h2>
+        <div class="row"> <b>Mã toa: </b>  &nbsp;<p th:text="${SKB.masokhambenh}"></p></div>
+        <p style="background-color: rgb(194, 194, 199); width: 100%; height:1px;"></p>
+        <div class="row"><b>Ngày khám:</b> &nbsp;<p  th:text="${SKB.ngaykham}"></p></div>
+        <p style="background-color: rgb(194, 194, 199); width: 100%; height:1px;"></p>
+        <div class="row"><b>Bệnh:</b>
+        <p>
+        <th:block th:each="item: ${ListBenh}">
+        	&nbsp;
+        	<th:block th:text=" ${item.get('tenbenh')}">
+        	</th:block> 
+        	&sbquo;     	
+        </th:block>
+        </p>
+        </div>
+       <!--  <p style="background-color: rgb(194, 194, 199); width: 100%; height: 1px;"></p>
+        <p><b>Triệu chứng:</b></p> -->
+        <p style="background-color: rgb(194, 194, 199); width: 100%; height: 1px; margin-bottom: 50px;"></p>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Thuốc</th>
+                <th>Số lượng</th>
+                <th>Cách dùng</th>
+              </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="item,stt:${ListToaThuoc}">
+            
+              <tr>
+                <td th:text="${stt.count}">1</td>
+                <td  th:text="${item.get('tenthuoc')}">Thuốc A</td>
+                <td th:text="${item.get('soluongdung')}">3</td>
+                <td th:text="${item.get('cachdung')}">3000</td>
+              </tr>
+              </th:block>
+             
+            </tbody>
+          </table>
+    </div>
+    <div th:replace="/layout :: linkJS"></div>
+	<script>
+	document.getElementById("itemtoathuoc").classList.add('active');
+	</script>
+</body>
+</html>

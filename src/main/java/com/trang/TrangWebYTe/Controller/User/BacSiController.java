@@ -1,4 +1,4 @@
-package com.trang.TrangWebYTe.Controller;
+package com.trang.TrangWebYTe.Controller.User;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +32,7 @@ public class BacSiController {
 
 	@GetMapping("/bacsi")
 	private ModelAndView BacSi() {
-		ModelAndView modelAndView= new ModelAndView("bacSi");
+		ModelAndView modelAndView= new ModelAndView("user/bacSi");
 		BacSiExample bacSiExample= new BacSiExample();
 		KhoaExample khoaExample= new KhoaExample();
 		List<Map<String, Object>> listBacSi= bacSiMapper.getAllBacSiTenKhoa();
@@ -62,7 +62,7 @@ public class BacSiController {
 			 listKhoa= khoaMapper.selectByExample(khoaExample);
 		}
 		
-		ModelAndView modelAndView= new ModelAndView("bacSi");
+		ModelAndView modelAndView= new ModelAndView("user/bacSi");
 		modelAndView.addObject("listKhoa",listKhoa );
 		modelAndView.addObject("listBacSi",listBacSi);
 		return modelAndView;
@@ -70,7 +70,7 @@ public class BacSiController {
 	}
 	@RequestMapping(value="/bacsi/selectKhoa",method = RequestMethod.POST)
 	private ModelAndView selectBacSi(@RequestParam("tenBacSi") String tenBacSi){
-		ModelAndView modelAndView= new ModelAndView("bacSi");
+		ModelAndView modelAndView= new ModelAndView("user/bacSi");
 		KhoaExample khoaExample= new KhoaExample();
 		List<Map<String, Object>> listBacSi;
 		List<Khoa> listKhoa;
