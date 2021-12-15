@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/admin/layoutadmin :: head">
+</head>
+
+<body>
+
+	
+
+	<header th:replace="/admin/layoutadmin :: header"> </header>
+	<div class="main-panel" style="height: 100vh;">
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                      </button>
+                        </div>
+                        <a class="navbar-brand" href="javascript:;">Hỗ Trợ Y Tế</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                  </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <form>
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="nc-icon nc-zoom-split"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link btn-magnify" href="javascript:;">
+                                    <i class="nc-icon nc-layout-11"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Stats</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item btn-rotate dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="nc-icon nc-bell-55"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Some Actions</span>
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-rotate" href="javascript:;">
+                                    <i class="nc-icon nc-settings-gear-65"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Account</span>
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="nc-icon nc-globe text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Bác Sĩ</p>
+                                            <p class="card-title"th:text="${sumbacsi}">1209s</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-refresh"></i> Tổng tất cả
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="nc-icon nc-money-coins text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Bệnh Nhân</p>
+                                            <p class="card-title"th:text="${sumbenhnhan}">67 </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-calendar-o"></i> Tổng tất cả
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="nc-icon nc-vector text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Lịch khám</p>
+                                            <p class="card-title" th:text="${sumtuan}">23
+                                                <p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-clock-o"></i> Trong ngày
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="nc-icon nc-favourite-28 text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Lịch khám</p>
+                                            <p class="card-title" th:text="${sumthang}">
+                                                <p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-refresh"></i> Trong Tháng
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="background-color: white; padding-top:30px;" >
+				      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		      		 <div id="chart_div"></div>
+		    		<br/>
+		        </div>
+            </div>
+
+
+            <footer class="footer footer-black  footer-white ">
+                <div class="container-fluid">
+                    <div class="row">
+                        <nav class="footer-nav">
+                            <ul>
+                                <li><a href="https://www.creative-tim.com" target="_blank">Creative Tim</a></li>
+                                <li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
+                                <li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li>
+                            </ul>
+                        </nav>
+                        <div class="credits ml-auto">
+                            <span class="copyright">
+                        © <script>
+                          document.write(new Date().getFullYear())
+                        </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+                      </span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script th:inline = "javascript">
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart);
+        console.log("cham");
+        var a=[[${mang}]];
+        console.log(typeof(a));
+    	console.log("cham");
+    	console.log(a+"o kia");
+    	var b=[
+    		["năm","ngay","thang"]
+    		,["1",'0','0'],
+    		 ['2015',' 0',' 1'],
+    		 ['2015',' 1', '0']
+    		];
+    	
+    	console.log(b+"o kia");
+        function drawChart() {
+        	
+          var data = google.visualization.arrayToDataTable(a);
+
+          var options = {
+        		  width: 1000,
+            chart: {
+              title: 'Company Performance',
+              subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            },
+            bars: 'vertical',
+            vAxis: {format: 'decimal'},
+            height: 500,
+            colors: ['#1b9e77', '#d95f02', '#7570b3']
+          };
+
+          var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+          chart.draw(data, google.charts.Bar.convertOptions(options));
+
+     /*      var btns = document.getElementById('btn-group'); */
+
+         /*  btns.onclick = function (e) {
+
+            if (e.target.tagName === 'BUTTON') {
+              options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
+              chart.draw(data, google.charts.Bar.convertOptions(options));
+            }
+          } */
+        }
+   </script>
+        <div th:replace="/admin/layoutadmin :: js">
+        </div>
+</body>
+</html>

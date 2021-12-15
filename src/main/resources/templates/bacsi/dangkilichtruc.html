@@ -13,7 +13,7 @@
     
                 <div class="container">
                   <h1 class="mb-5 " style="text-align: center;"> Đăng kí lịch trực</h1>
-                    <h5 >Đăng kí lịch vào thứ 7</h5>
+                    <h5  style="color:red; text-align: center;" th:text="${message}" >Đăng kí lịch vào thứ 7</h5>
                 <hr class="tm-hr-primary tm-mb-55">
                 <form th:action="@{/addlichkham}" th:object="${listngaydk}" method="POST">
                   <div class="table-responsive">
@@ -23,7 +23,7 @@
                         <tr>
                           <th scope="col">
                             <label class="control control--checkbox">
-                              <input type="checkbox"  class="js-check-all"/>
+                              <input type="checkbox"  class="js-check-all" th:disabled="!${display}"/>
                               <div class="control__indicator"></div>
                             </label>
                           </th>
@@ -39,8 +39,9 @@
                       
                             <td>
                               <label class="control control--checkbox">
+                              <!-- th:style="${display} ? 'display: none' : 'display: inline' " -->
                               <input type="checkbox"  th:field="*{listngay}"
-                  				th:value="${item.get('ngay')}" />
+                  				th:value="${item.get('ngay')}"   th:disabled="!${display}" />
                               <div class="control__indicator"></div>
                               </label>
                             </td>
@@ -48,20 +49,22 @@
                               Thứ 2
                             </td>
                             <td th:text="${item.get('ngay')}">12/2/2021</td>
-                            <td>Đã đăng kí</td>
+                            <td th:text="${item.get('trangthai')}" th:style="(${item.get('trangthai')}=='Chưa đăng kí' )? 'color:red':'color:blue' ">Đã đăng kí</td>
                           </tr>
                           </th:block>
-                         
                       </tbody>
                     </table>
                     
                   </div>
+                  <th:block th:if="${display}">
+                 
                   <div class="row">
 						<button class="col-2 btn btn-danger"  type="submit" style="border: none; color:white" >
 								Lưu
 							
 						</button>
 					</div>
+					 </th:block>
 					</form>
                 </div>
               </div>      
@@ -75,10 +78,10 @@
             </footer>
         </main>
     </div>
-    <div th:replace="/bacsi/bacsilayout :: linkJS"></div>
+   
   
 	<script>
-		document.getElementById("lich_da_kham").classList.add('active');
+		document.getElementById("dang_Ki_Lich").classList.add('active');
 		$(function() {
 
 			  $('.js-check-all').on('click', function() {
@@ -118,5 +121,6 @@
 
 			});
 	</script>
+	 <div th:replace="/bacsi/bacsilayout :: linkJS"></div>
 </body>
 </html>

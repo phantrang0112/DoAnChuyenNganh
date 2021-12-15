@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.trang.TrangWebYTe.mapper.NewsMapper;
@@ -131,7 +132,7 @@ public class UserController {
 		modelAndView.addObject("message",messageString );
 		return modelAndView;
 	}
-	@RequestMapping("/account/update")
+	@RequestMapping(value = "/account/update", method = RequestMethod.POST)
 	public ModelAndView UpdateUser(Model model, @ModelAttribute("updateUser") User updateUser,@ModelAttribute("updateTaiKhoan") TaiKhoan taiKhoan,Principal principal) {
 		ModelAndView modelAndView;
 		String messageString;

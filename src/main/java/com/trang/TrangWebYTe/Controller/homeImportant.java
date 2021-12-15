@@ -36,7 +36,9 @@ public class homeImportant {
 			 modelAndView= homeBacsi.home(principal);
 		}
 		else if(userDetails.getAuthorities().toString().contains("ADMIN")) {
+		
 			 modelAndView= new ModelAndView("user/home");
+			 modelAndView.addObject("user", userDetails.getUsername());
 			 
 		}
 		else {
@@ -44,6 +46,7 @@ public class homeImportant {
 			NewsExample newsExample= new NewsExample();
 			List<News> newsList= newsMapper.selectByExample(newsExample);
 			modelAndView.addObject("listNews",newsList);
+			 modelAndView.addObject("user", userDetails.getUsername());
 		}
 		return modelAndView;
 	}
