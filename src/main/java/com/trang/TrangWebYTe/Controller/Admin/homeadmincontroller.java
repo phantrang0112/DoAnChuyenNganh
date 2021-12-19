@@ -1,7 +1,9 @@
 package com.trang.TrangWebYTe.Controller.Admin;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import com.trang.TrangWebYTe.mapper.BacSiMapper;
 import com.trang.TrangWebYTe.mapper.LichKhamMapper;
 import com.trang.TrangWebYTe.mapper.UserMapper;
 import com.trang.TrangWebYTe.model.BacSiExample;
+import com.trang.TrangWebYTe.model.LichKham;
 import com.trang.TrangWebYTe.model.LichKhamExample;
 import com.trang.TrangWebYTe.model.UserExample;
 @Controller
@@ -72,16 +75,23 @@ public class homeadmincontroller {
 	public ModelAndView homeAdmin() {
 		ModelAndView modelAndView = new ModelAndView("admin/homeadmin");
 		Calendar cal = Calendar.getInstance();
-		Date ngayHienTai = cal.getTime();
+		SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy");
+//		cal.add(Calendar.DAY_OF_MONTH, -7);
+		
+		Date ngayHienTai = cal.getTime();;
+		
 		int tongLichKhamTrongTuan;
 		int tongLichKhamTrongThang;
 		int tongBacSi= layTongBacSi();
 		int tongBenhNhan= layTongBenhNhan();
-		Object mang[][]= new Object[7][3];
+		Object mang[][]= new Object[8][3];
 	
 		int ngay = cal.get(cal.DAY_OF_WEEK);
 		// lay ngày đầu tuần nè
 		cal.add(Calendar.DAY_OF_MONTH, -ngay + 2);
+		System.out.println("ơ kìa má");
+		String khoangngay ="Từ ngày " +format1.format(cal.getTime());
+		System.out.println(cal.getTime()+"ngày đầu tuần");
 		for (int i = 0; i < mang.length; i++) {
 			LichKhamExample lichKhamExample = new LichKhamExample();
 			for (int j = 0; j < mang[0].length; j++) {
@@ -98,16 +108,26 @@ public class homeadmincontroller {
 					
 				}
 				else {
-					cal.add(Calendar.DAY_OF_MONTH, 1);
+					
+					
 					if(j==0) {
-						
-						mang[i][j]="Ngày thứ "+(i+1);
+						if(i==7) {
+							mang[i][j]="Ngày chủ nhật ";
+						}
+						else {
+							mang[i][j]="Ngày thứ "+(i+1);
+						}
+						System.out.println(cal.getTime());
 					}
 					else if(j==1) {
-						lichKhamExample.createCriteria().andNgayhenkhamEqualTo(cal.getTime());
-						lichKhamExample.createCriteria(). andTrangthaiNotEqualTo("Đã hủy");
-						
+						lichKhamExample.createCriteria().andNgayhenkhamEqualTo(cal.getTime()).andTrangthaiNotEqualTo("Đã hủy");
+//						List<LichKham> aKhams= lichKhamMapper.selectByExample(lichKhamExample);
+//						if(aKhams.size()>0) {
+//							System.out.println(aKhams.get(0).getIdlichkham()+"hmmmnha");
+//						}
+						/* lichKhamExample.createCriteria(). andTrangthaiNotEqualTo("Đã hủy"); */
 						int songay= (int) lichKhamMapper.countByExample(lichKhamExample);
+						System.out.println(songay+"hmmm");
 						if(songay==0) {
 							mang[i][j]=0;
 						}
@@ -117,8 +137,9 @@ public class homeadmincontroller {
 						
 					}
 					else {
-						lichKhamExample.createCriteria().andNgayhenkhamEqualTo(cal.getTime());
-						lichKhamExample.createCriteria().andTrangthaiEqualTo("Đã hủy");
+						lichKhamExample.clear();
+						lichKhamExample.createCriteria().andNgayhenkhamEqualTo(cal.getTime()).andTrangthaiEqualTo("Đã hủy");
+						
 						int songayhuy= (int) lichKhamMapper.countByExample(lichKhamExample);
 						if(songayhuy==0) {
 							mang[i][j]=0;
@@ -127,12 +148,21 @@ public class homeadmincontroller {
 							mang[i][j]=songayhuy;
 						}
 						
+						
 					}
 					
+					
 				}
+				
 			}
+			if(i>0) {
+				cal.add(Calendar.DAY_OF_MONTH, 1);
+			}
+			
 		}
-		System.out.println(mang.toString());
+		cal.add(Calendar.DAY_OF_MONTH, -1);
+		 khoangngay +="  đến ngày  "+ format1.format(cal.getTime());
+		System.out.println(mang.toString()+khoangngay);
 		
 		tongLichKhamTrongThang= layTongLichKhamTrongThang(ngayHienTai);
 		tongLichKhamTrongTuan= layTongLichKhamTrongTuan(ngayHienTai);
@@ -143,6 +173,7 @@ public class homeadmincontroller {
 		modelAndView.addObject("sumbacsi", tongBacSi);
 		modelAndView.addObject("sumbenhnhan", tongBenhNhan);
 		modelAndView.addObject("mang", mang);
+		modelAndView.addObject("khoangngay", khoangngay);
 		return modelAndView;
 	}
 }

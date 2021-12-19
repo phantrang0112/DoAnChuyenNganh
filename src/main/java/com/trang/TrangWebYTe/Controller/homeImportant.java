@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.trang.TrangWebYTe.Controller.Admin.homeadmincontroller;
 import com.trang.TrangWebYTe.Controller.BacSi.HomeBacSiController;
 import com.trang.TrangWebYTe.mapper.NewsMapper;
 import com.trang.TrangWebYTe.model.News;
@@ -26,7 +27,8 @@ public class homeImportant {
 	NewsMapper newsMapper;
 	@Autowired
 	HomeBacSiController homeBacsi;
-
+	@Autowired
+	homeadmincontroller homeAdmin;
 	@GetMapping("/homeImportant")
 	public ModelAndView homeImportant(Principal principal) {
 		UserDetails userDetails= (UserDetails) ((Authentication) principal).getPrincipal();
@@ -37,8 +39,7 @@ public class homeImportant {
 		}
 		else if(userDetails.getAuthorities().toString().contains("ADMIN")) {
 		
-			 modelAndView= new ModelAndView("user/home");
-			 modelAndView.addObject("user", userDetails.getUsername());
+			 modelAndView= homeAdmin.homeAdmin();
 			 
 		}
 		else {

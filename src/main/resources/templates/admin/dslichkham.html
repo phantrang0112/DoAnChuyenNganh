@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/admin/layoutadmin :: head">
+</head>
+
+<body>
+	<header th:replace="/admin/layoutadmin :: header"> </header>
+<div class="main-panel" style="height: 100vh;">
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                      </button>
+                        </div>
+                        <a class="navbar-brand" href="javascript:;">Danh sách lịch khám</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                  </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <form>
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="nc-icon nc-zoom-split"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link btn-magnify" href="javascript:;">
+                                    <i class="nc-icon nc-layout-11"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Stats</span>
+                                    </p>
+                                </a>
+                            </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link btn-rotate" href="javascript:;">
+                                    <i class="nc-icon nc-settings-gear-65"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Account</span>
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"> Danh sách Lịch Khám</h4>
+                                <p th:text="${message}"></p>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th >STT</th>
+                                            <th>Mã bác sĩ</th>
+                                            <th>Mã Bệnh nhân</th>
+                                            <th>Ngày hẹn  khám</th>
+                                            <th class="text-right">Trạng thái</th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
+                                   
+                                       
+                                            <th:block th:each="item,dem: ${dslichkham}">
+                                            
+	                                            <tr>
+	                                            <form th:action="@{dslichkham/update}+${item.getIdlichkham()}" method="POST">
+	                                            	<th:block th:with="${updatelichkham}=${item}">
+	                                            	
+	                                                <td th:text="${dem.count}"></td>
+	                                                <td><input style="border:none;" type="text" th:value="${item.getMabacsi()}" name="mabacsi" readonly="readonly"/></td>
+	                                                <td><input style="border:none;"  type="text" th:value="${item.getUserid()}" readonly="readonly"/></td>
+	                                                <th:block th:with="date=${#dates.format(new java.util.Date(item.getNgayhenkham()), 'yyyy-MM-dd')}">
+	                                                <td> <input style="border:none;" name="ngayhenkham" type="date" th:value="${date}" th:readonly="(${item.getTrangthai}=='Đã hủy' )"/></td>
+	                                                </th:block>
+	                                                <td class="text-right"><input style="border:none;" readonly="readonly" type="text" th:value="${item.getTrangthai()}"/>  </td>
+	                                                <td class="actions" data-th="">
+	                                                    <button type="submit" style="color: white;" class=" btn btn-info "><i class="fa fa-edit "></i></button>
+	                                                    <a th:href="@{dslichkham/delete}+${item.getIdlichkham()}" style="color: white; " class="btn btn-danger "><i class="fa fa-trash-o "></i></a>
+	                                                </td>
+	                                                </th:block>
+	                                               </form>
+	                                            </tr>
+	                                             
+                                             </th:block>
+                                           
+                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="/admin/layoutadmin :: js">
+        </div>
+        <script type="text/javascript">
+		document.getElementById("dslichkham_admin").classList.add('active');
+	</script>
+</body>
+</html>

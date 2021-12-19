@@ -195,4 +195,5 @@ public class LichDaKhamController {
 		ModelAndView modelAndView= lichdakham(principal);
 		return modelAndView;
 	}
+	
 }

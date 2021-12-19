@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/admin/layoutadmin :: head">
+</head>
+
+<body>
+	<header th:replace="/admin/layoutadmin :: header"> </header>
+ <div class="main-panel" style="height: 100vh;">
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                      </button>
+                        </div>
+                        <a class="navbar-brand" href="javascript:;">Web hỗ trợ Y Tế</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                  </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <form>
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="nc-icon nc-zoom-split"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link btn-magnify" href="javascript:;">
+                                    <i class="nc-icon nc-layout-11"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Stats</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item btn-rotate dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="nc-icon nc-bell-55"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Some Actions</span>
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-rotate" href="javascript:;">
+                                    <i class="nc-icon nc-settings-gear-65"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Account</span>
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="content">
+            <a style="color: white; " th:href="@{/thembacsiadmin}" class="btn btn-danger "> Thêm một bác sĩ  <i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"> Danh sách Bác Sĩ</h4>
+                                <p th:text="${message}" style="color:red"></p>
+                            </div>
+                             
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th class="col-1">STT</th>
+                                            <th>Tên đầy đủ </th>
+                                            <th>Tên đăng nhập</th>
+                                            <th>email</th>
+                                            <th >sđt </th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="item,dem:${listBacSi}">
+                                            <tr>
+                                                <td th:text="${dem.count}">1</td>
+                                                <td th:text="${item.getFullname()}">phantrang</td>
+                                                <td th:text="${item.getUsername()}">shakyutw612kjk9</td>
+                                                <td th:text="${item.getEmail()}" > phantrang@gmail.com </td>
+                                                <td th:text="${item.getPhone()}">0327248445</td>
+                                                <td class="actions" data-th="">
+                                                  
+                                                    <a style="color: white; " th:href="@{/dsbenhnhanadmin}" class="btn btn-danger "><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                                     <a style="color: white; " th:href="@{/dsbenhnhanadmin}" class="btn btn-success "><i class="fa  fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                            </th:block>
+                                           
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ <div th:replace="/admin/layoutadmin :: js">
+        </div>
+        <script type="text/javascript">
+		document.getElementById("dsbacsi_admin").classList.add('active');
+	</script>
+	<footer class="main-panel" style="background-color: white;" >
+    <div class="footer-top ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-md-6 col-lg-6 footer-about wow fadeInUp ">
+                    <img class="logo-footer " src="./assets/image/img/LLogo.png " style="height: 100px;width: 300px" alt="logo-footer " data-at2x="assets/img/logo.png ">
+                    <p>
+                        Hãy đến với chúng tôi. Chúng tôi sẽ mang đến cho bạn những gì tuyệt vời nhất
+                    </p>
+               
+                </div>
+                <div class="col-md-5 col-lg-5 offset-lg-1 footer-contact wow fadeInDown ">
+                    <h3>Liên hệ:</h3>
+                    <p><i class="nc-icon nc-favourite-28 "></i> 61/7 Đường 104, Tăng Nhơn Phú A,Q9</p>
+                    <p><i class="nc-icon nc-favourite-28  "></i> Phone: 0327248445</p>
+                    <p><i class="nc-icon nc-favourite-28  "></i> Email: <a href="mailto:hello@domain.com ">phantrang011220@gmail.com</a></p>
+                    <p><i class="nc-icon nc-favourite-28 "></i> Skype: phantrang0112</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+</body>
+</html>

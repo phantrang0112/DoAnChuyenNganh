@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+
+<body>
+
+	<!-- Back to top button -->
+	<div class="back-to-top"></div>
+
+	<header th:replace="/layout :: header"> </header>
+	<div class="container">
+		<div style="margin-top: 10%">
+			<div class=" text-center" style="margin-bottom: 4%">
+
+				<h4>Đăng kí lịch khám</h4>
+				<p th:text="${message}" style="color: red"></p>
+			</div>
+			
+
+				<form th:action="@{/loctheongaykham}" method="POST">
+				<div class="row">
+					<label class="col-3 " for="ngaykham">Chọn Ngày khám:</label> <input
+						type="date" class="col-5" name="ngaykham"
+						style="border: 2px solid #d6dbd9; padding: 5px"  th:value="${ngayhenkham}" >
+					<button type="submit" class="btn btn-primary col-2">Lọc
+						theo ngày khám</button>
+				</div>
+				</form>
+
+			
+			<br>
+			<form th:action="@{/themlichkham}" method="POST" th:object="${newLichKham}">
+				<div>
+
+					<div class="row">
+						<label class="col-3 text-left" for="sel1">Chọn Theo Khoa:</label>
+						<div class="dropdown col-7" style="padding: 0px">
+							<p class=" dropdown-toggle form-control" data-toggle="dropdown"
+								style="margin: 0px; background-color: white; border: 2px solid #d6dbd9">Khoa</p>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" th:href="@{/selectKhoaLichKham} + ${0}">Khoa</a>
+								<th:block>
+									<a th:each="item: ${listKhoa}" class="dropdown-item"
+										th:text="${item.getTenkhoa()}"
+										th:href="@{/selectKhoaLichKham} + ${item.getMa()}"></a>
+
+								</th:block>
+							</div>
+						</div>
+					</div>
+
+					<br>
+					<input name="ngayhenkham" th:value="${ngayhenkham}" style="display: none">
+					<div class="row">
+						<label class="col-3 text-left" for="sel1">Chọn Bác Sĩ:</label> <select
+							class="col-7 form-control" id="mabacsi" name="mabacsi">
+							<th:block th:each="item: ${listBacSi}">
+								<option class="text-center" th:text="${item.getFullname()}"
+									th:value="${item.getId()}">1</option>
+							</th:block>
+						</select>
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary">Đăng ký</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+	<div th:replace="/layout :: linkJS"></div>
+</body>
+</html>

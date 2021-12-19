@@ -50,6 +50,7 @@ public class HomeController {
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView("user/home");
 		NewsExample newsExample= new NewsExample();
+		newsExample.setOrderByClause(newsExample.getOrderByClause()+","+"ngaytao DESC");
 		List<News> newsList= newsMapper.selectByExample(newsExample);
 		modelAndView.addObject("listNews",newsList);
 		return modelAndView;

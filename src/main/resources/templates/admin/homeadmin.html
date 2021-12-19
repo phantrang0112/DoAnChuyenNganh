@@ -230,8 +230,8 @@
           var options = {
         		  width: 1000,
             chart: {
-              title: 'Company Performance',
-              subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+              title: 'Thống kê số lịch khám trong Tuần',
+              subtitle: [[${khoangngay}]],
             },
             bars: 'vertical',
             vAxis: {format: 'decimal'},
@@ -254,6 +254,9 @@
           } */
         }
    </script>
+   <script type="text/javascript">
+		document.getElementById("home_admin").classList.add('active');
+	</script>
         <div th:replace="/admin/layoutadmin :: js">
         </div>
 </body>

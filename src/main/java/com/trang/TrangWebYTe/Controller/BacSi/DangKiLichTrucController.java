@@ -194,11 +194,9 @@ public class DangKiLichTrucController {
 			listlichtruc= lichTrucMapper.selectByExample(lichTrucExample);
 			if(listlichtruc.size()>0) {
 				modelAndView= showlichdadangki(datenow, principal);
-				System.out.println("ơ kìa1"+listlichtruc.size());
 				display=false;
 			}
 			else {
-				System.out.println("ơ kìa");
 				modelAndView= DangKiLichtruc(datenow, principal);
 				display=true;
 			}

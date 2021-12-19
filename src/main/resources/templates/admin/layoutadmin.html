@@ -3,11 +3,10 @@
 
 <head th:fragment="head">
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" th:href="@{../assetsAdmin/img/apple-icon.png}">
-    <link rel="icon" type="image/png" th:href="@{./assetsAdmin/img/favicon.png}">
+   
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Paper Dashboard 2 by Creative Tim
+        Hỗ trợ y tế
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -35,55 +34,55 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
-                        <a href="./home.html">
+                    <li id="home_admin" >
+                        <a th:href="@{/homeadmin}">
                             <i class="nc-icon nc-bank"></i>
                             <p>Trang Chủ</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="./user.html">
+                    <li id="user_admin">
+                        <a th:href="@{/accountadmin}">
                             <i class="nc-icon nc-single-02"></i>
                             <p>Thông tin người dùng</p>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="./DsHoaDon.html">
+                    <li id="dslichkham_admin">
+                        <a th:href="@{/dslichkham}">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Danh sách lịch khám</p>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="./DSNhanVien.html">
+                    <li id="dsbacsi_admin">
+                        <a th:href="@{/dsbacsiadmin}">
                             <i class="nc-icon nc-tile-56"></i>
                             <p>Danh Sách Bác Sĩ</p>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="./DSKhachHang.html">
+                    <li id="dsbenhnhan_admin">
+                        <a th:href="@{/dsbenhnhanadmin}">
                             <i class="nc-icon nc-circle-10"></i>
                             <p>Danh Sách Bệnh Nhân</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="./Product.html">
+                    <li id="dsthuoc_admin">
+                        <a th:href="@{/dsthuocadmin}">
                             <i class="nc-icon nc-box"></i>
                             <p>Thuốc</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="./AddProduct.html">
+                    <li id="dsadmin">
+                        <a th:href="@{dsadmin}">
                             <i class="nc-icon nc-simple-add"></i>
-                            <p>Vaccine</p>
+                            <p>Danh sách admin</p>
                         </a>
-                    </li>
-                    <li class=" active-pro">
-                        <a href="./AddEmployee.html">
+                    </li >
+                    <li id="add_admin" class=" active-pro">
+                        <a th:href="@{/themadmin}">
                             <i class="nc-icon nc-spaceship"></i>
-                            <p>Thêm Bác Sĩ</p>
+                            <p>Thêm Admin</p>
                         </a>
                     </li>
                 </ul>

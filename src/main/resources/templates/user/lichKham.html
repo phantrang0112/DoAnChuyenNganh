@@ -23,10 +23,7 @@
 					</nav>
 					<h1 style="margin-left: 160px;" class="text-center">Danh sách
 						lịch khám</h1>
-					<button class="btn btn-primary text-center"
-						style="position: absolute; left: 38%; top: 99%"
-						data-toggle="modal" data-target="#myModal">đăng kí lịch
-						khám</button>
+					<a th:href="@{/dangkilichkham}" class="btn btn-primary text-center" style="position: absolute; left: 38%; top: 99%">đăng kí lịch khám</a>
 				</div>
 			</div>
 		</div>
@@ -94,7 +91,7 @@
 		<div class="container">
 			<div class="row">
 
-				<th:block th:each="lichkham: ${listLichKham}" )>
+				<th:block th:each="lichkham: ${listLichKham}" >
 				<div class="col-lg-4">
 					 <form
 						th:action="@{huydangki}+${lichkham.get('idlichkham')}"

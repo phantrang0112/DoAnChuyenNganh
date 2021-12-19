@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		 // Trang chỉ dành cho Bacsi
 //		http.authorizeRequests().antMatchers("/homebacsi/**").access("hasRole('ROLE_USER')");
-		http.authorizeRequests().antMatchers("/bacsi/**","/selectKhoa**","/home/**","/homeImportant/**","/register/**","/**").permitAll().antMatchers("/homebacsi/**").hasRole("BACSI").antMatchers("/homeadmin/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
+		http.authorizeRequests().antMatchers("/bacsi/**","/selectKhoa**","/home/**","/homeImportant/**","/register/**").permitAll().antMatchers("/homebacsi/**","/lichdakham/**","/thongke/**","/dangkilich/**","/accountbacsi/**").hasRole("BACSI").antMatchers("/homeadmin/**","/accountadmin/**","/dslichkham/**","/dsbacsiadmin","/dsbenhnhanadmin","/dsthuocadmin/**","/dsadmin/**","/themadmin/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").permitAll().defaultSuccessUrl("/homeImportant").failureUrl("/login?success=flase")
 				.loginProcessingUrl("/j_spring_security_check").and().logout().permitAll();
 	}
