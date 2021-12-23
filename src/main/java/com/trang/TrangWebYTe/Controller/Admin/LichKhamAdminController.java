@@ -98,4 +98,24 @@ public class LichKhamAdminController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
+	@RequestMapping(value="/selectdslichkham{trangthai}")
+	public ModelAndView selectLichKham(@PathVariable String trangthai) {
+		ModelAndView modelAndView = new ModelAndView("admin/dslichkham");
+		LichKhamExample lichKhamExample= new LichKhamExample();
+		List<LichKham> listLichKhams;
+		try {
+			
+			lichKhamExample.createCriteria().andTrangthaiEqualTo(trangthai);
+			lichKhamExample.setOrderByClause(lichKhamExample.getOrderByClause()+","+"ngayhenkham DESC");
+			 listLichKhams= lichKhamMapper.selectByExample(lichKhamExample);
+		} catch (Exception e) {
+			lichKhamExample.setOrderByClause(lichKhamExample.getOrderByClause()+","+"ngayhenkham DESC");
+			 listLichKhams= lichKhamMapper.selectByExample(lichKhamExample);
+		}
+	
+		modelAndView.addObject("dslichkham", listLichKhams);
+		LichKham lichKham= new LichKham();
+		modelAndView.addObject("updatelichkham", lichKham);
+		return modelAndView;
+	}
 }

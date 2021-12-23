@@ -26,7 +26,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <form>
                             <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <input type="text" value="" class="form-control">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <i class="nc-icon nc-zoom-split"></i>
@@ -64,6 +64,21 @@
                                 <h4 class="card-title"> Danh sách Lịch Khám</h4>
                                 <p th:text="${message}"></p>
                             </div>
+                            <div class="dropdown">
+									<p class=" dropdown-toggle " data-toggle="dropdown"
+										style="padding: 12px 50px; background-color: #aaaaeb; color: white;">Trạng thái</p>
+									<div class="dropdown-menu">
+											<th:block th:with="dahuy='Đã hủy',dadangki='Đã đăng kí',dakham='Đã khám', choxacnhan='Chờ xác nhận'">
+											<a class="dropdown-item" 
+												th:href="@{/selectdslichkham} +${dadangki} ">Đã đăng kí</a>
+												<a class="dropdown-item" 
+												th:href="@{/selectdslichkham} + ${dahuy}">Đã hủy</a>
+												<a class="dropdown-item" 
+												th:href="@{/selectdslichkham} + ${dakham}">Đã khám</a>
+												<a class="dropdown-item" th:href="@{/selectdslichkham} + ${choxacnhan}">Chờ xác nhận</a>
+										</th:block>
+									</div>
+								</div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
@@ -111,7 +126,8 @@
                 </div>
             </div>
         </div>
-
+		 <footer th:replace="/admin/layoutadmin :: footer">
+        </footer>
         <div th:replace="/admin/layoutadmin :: js">
         </div>
         <script type="text/javascript">

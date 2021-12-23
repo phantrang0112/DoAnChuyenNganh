@@ -192,7 +192,6 @@ public class LichKhamController {
 		java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(ngayhenkham);
 		UserExample userExample = new UserExample();
 		userExample.createCriteria().andUsernameEqualTo(userDetails.getUsername());
-		userExample.setOrderByClause("DESC");
 		List<com.trang.TrangWebYTe.model.User> listuUser= userMapper.selectByExample(userExample);
 		LichKham lichKham= new LichKham();
 		lichKham.setMabacsi(Integer.parseInt(maBacSi));

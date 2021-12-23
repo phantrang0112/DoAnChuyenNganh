@@ -80,7 +80,7 @@ public class HomeBacSiController {
 		bacSiExample.createCriteria().andUsernameEqualTo(userDetails.getUsername());
 		List<BacSi> bacSis= bacsiMapper.selectByExample(bacSiExample);
 		Calendar cal = Calendar.getInstance();
-		
+		cal.add(Calendar.DAY_OF_MONTH, -6);
 		int ngay = cal.get(cal.DAY_OF_WEEK);
 		// lay ngày đầu tuần nè
 		cal.add(Calendar.DAY_OF_MONTH, -ngay + 2);

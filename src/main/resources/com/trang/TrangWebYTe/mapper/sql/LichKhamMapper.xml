@@ -293,6 +293,7 @@
    select lichkham.*,user.*
    from lichkham,bacsi,user
    where lichkham.userId= user.id and lichkham.mabacsi= bacsi.id and bacsi.username=#{username} and lichkham.trangthai !=#{trangthai}
+   order by ngayhenkham DESC
    </select>
      <select id="selectLichKhamTheoNgay" parameterType="map" resultType="map">
    select lichkham.*,user.*
