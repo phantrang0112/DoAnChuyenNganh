@@ -45,7 +45,9 @@ public class homeImportant {
 		else {
 			modelAndView= new ModelAndView("user/home");
 			NewsExample newsExample= new NewsExample();
+			newsExample.setOrderByClause(newsExample.getOrderByClause()+","+"ngaytao DESC");
 			List<News> newsList= newsMapper.selectByExample(newsExample);
+			
 			modelAndView.addObject("listNews",newsList);
 			 modelAndView.addObject("user", userDetails.getUsername());
 		}
